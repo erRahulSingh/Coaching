@@ -342,7 +342,7 @@ export default function LandingPage() {
       {/* --- Hero Section --- */}
       <section id="home" className="bg-white z-10 pt-8 pb-16 lg:py-10 flex items-center">
 
-        <div className="max-w-[1250px] w-full mx-auto relative lg:min-h-[780px] flex items-center px-4 md:px-8">
+        <div className="max-w-[1250px] w-full mx-auto relative lg:min-h-[550px] flex items-center px-4 md:px-8">
 
           {/* Right Background SVG & Image (Desktop only) */}
           <div className="absolute top-0 right-4 md:right-8 w-[55%] h-full z-0 hidden lg:block rounded-r-[40px] overflow-hidden">
@@ -399,102 +399,75 @@ export default function LandingPage() {
 
               {/* Main Heading */}
               <h2 className="font-sans font-black tracking-tight leading-[1.05] mb-2">
-                <span className="block text-[40px] md:text-[56px] xl:text-[60px] text-[#0a1c5d]">JMS MODERN</span>
-                <span className="block text-[40px] md:text-[56px] xl:text-[60px] text-[#f48c06]">CLASSES</span>
+                <span className="block text-[34px] md:text-[46px] xl:text-[50px] text-[#0a1c5d]">JMS MODERN</span>
+                <span className="block text-[34px] md:text-[46px] xl:text-[50px] text-[#f48c06]">CLASSES</span>
               </h2>
-              <h3 className="text-[20px] md:text-[27px] xl:text-[34px] font-sans font-black tracking-wider text-[#0a1c5d] mb-4">
+              <h3 className="text-[18px] md:text-[22px] xl:text-[26px] font-sans font-black tracking-wider text-[#0a1c5d] mb-4">
                 COACHING + LIBRARY
               </h3>
 
               {/* Location */}
               <div className="inline-flex items-center gap-2 mb-4">
-                <MapPin className="w-6 h-6 text-[#0a1c5d] shrink-0" />
-                <p className="text-[14px] md:text-[16px] text-[#0a1c5d] font-bold">
+                <MapPin className="w-5 h-5 text-[#0a1c5d] shrink-0" />
+                <p className="text-[12px] md:text-[14px] text-[#0a1c5d] font-bold">
                   Kushwaha Market, Parsauni Near Parsauni Petrol Pump
                 </p>
               </div>
 
               {/* Description */}
-              <p className="text-[12px] md:text-[13px] text-gray-500 font-medium leading-relaxed max-w-[500px] mb-8">
+              <p className="text-[11px] md:text-[12px] text-gray-500 font-medium leading-relaxed max-w-[500px] mb-6">
                 The perfect place to study, grow and achieve.<br />
                 Best environment, expert guidance and 24x7 access<br />
                 to help you achieve your goals.
               </p>
 
               {/* 4 Feature Badges Row */}
-              <div className="flex flex-wrap gap-3 w-full max-w-[620px] mb-8">
+              <div className="flex flex-wrap gap-2 w-full max-w-[550px] mb-6">
                 {[
-                  { title: "OPEN 24/7", subtitle: "Learn Anytime", iconPath: <Clock className="w-7 h-7 text-[#0a1c5d] stroke-[2]" /> },
-                  { title: "Best Environment", subtitle: "for Study", iconPath: <svg className="w-7 h-7 text-[#0a1c5d]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> },
-                  { title: "Limited Seats", subtitle: "Hurry Up!", iconPath: <svg className="w-7 h-7 text-[#0a1c5d]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M9 14l2 2 4-4"></path></svg> },
-                  { title: "Experienced", subtitle: "Faculty", iconPath: <Award className="w-7 h-7 text-[#f48c06] stroke-[2]" /> },
+                  { title: "OPEN 24/7", subtitle: "Learn Anytime", iconPath: <Clock className="w-5 h-5 text-[#0a1c5d] stroke-[2]" /> },
+                  { title: "Best Environment", subtitle: "for Study", iconPath: <svg className="w-5 h-5 text-[#0a1c5d]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> },
+                  { title: "Limited Seats", subtitle: "Hurry Up!", iconPath: <svg className="w-5 h-5 text-[#0a1c5d]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M9 14l2 2 4-4"></path></svg> },
+                  { title: "Experienced", subtitle: "Faculty", iconPath: <Award className="w-5 h-5 text-[#f48c06] stroke-[2]" /> },
                 ].map((badge, idx) => (
-                  <div key={idx} className="bg-white px-3 py-4 rounded-[14px] border border-gray-100 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)] flex flex-col items-center text-center flex-1 min-w-[125px]">
-                    <div className="mb-2">
+                  <div key={idx} className="bg-white px-2 py-3 rounded-[12px] border border-[#f48c06]/30 shadow-[0_2px_10px_-3px_rgba(0,0,0,0.05)] flex flex-col items-center text-center flex-1 min-w-[100px] max-w-[130px]">
+                    <div className="mb-1.5">
                       {badge.title === "Experienced" ? (
-                        <div className="w-12 h-12 rounded-full flex items-center justify-center">
+                        <div className="w-8 h-8 rounded-full flex items-center justify-center">
                           {badge.iconPath}
                         </div>
                       ) : (
-                        <div className="w-12 h-12 rounded-full flex items-center justify-center">
+                        <div className="w-8 h-8 rounded-full flex items-center justify-center">
                           {badge.iconPath}
                         </div>
                       )}
                     </div>
-                    <h4 className="text-[12px] font-black text-[#0a1c5d] leading-tight mb-0.5">{badge.title}</h4>
-                    <p className="text-[11px] text-[#0a1c5d] font-semibold">{badge.subtitle}</p>
+                    <h4 className="text-[11px] font-black text-[#0a1c5d] leading-tight mb-0.5">{badge.title}</h4>
+                    <p className="text-[10px] text-[#0a1c5d] font-semibold">{badge.subtitle}</p>
                   </div>
                 ))}
               </div>
 
               {/* CTA Buttons */}
-              <div className="flex gap-4 mb-8">
+              <div className="flex gap-4">
                 <button
                   onClick={() => setIsAdmissionOpen(true)}
-                  className="px-8 py-3.5 bg-[#0a1c5d] hover:bg-[#071444] text-white font-bold rounded-[8px] transition-all duration-300 text-[14px] tracking-wide flex items-center gap-2 shadow-lg"
+                  className="px-6 py-2.5 bg-[#0a1c5d] hover:bg-[#071444] text-white font-bold rounded-[8px] transition-all duration-300 text-[13px] tracking-wide flex items-center gap-2 shadow-lg"
                 >
-                  ENROLL NOW <ArrowRight className="w-5 h-5" />
+                  ENROLL NOW <ArrowRight className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => handleNavClick("courses")}
-                  className="px-8 py-3.5 border-2 border-[#0a1c5d] text-[#0a1c5d] font-bold rounded-[8px] transition-all duration-300 text-[14px] tracking-wide flex items-center gap-2 hover:bg-[#0a1c5d] hover:text-white"
+                  className="px-6 py-2.5 border-2 border-[#0a1c5d] text-[#0a1c5d] font-bold rounded-[8px] transition-all duration-300 text-[13px] tracking-wide flex items-center gap-2 hover:bg-[#0a1c5d] hover:text-white"
                 >
-                  EXPLORE MORE <ArrowRight className="w-5 h-5" />
+                  EXPLORE MORE <ArrowRight className="w-4 h-4" />
                 </button>
-              </div>
-
-              {/* Contact Cards (Bottom) */}
-              <div className="flex flex-col sm:flex-row gap-4 bg-white border border-gray-100 p-4 rounded-2xl shadow-[0_4px_20px_-5px_rgba(0,0,0,0.05)] w-full max-w-[650px] relative z-20">
-                <div className="flex items-center gap-4 flex-1">
-                  <div className="w-10 h-10 rounded-full bg-[#fff4e6] flex items-center justify-center shrink-0">
-                    <Phone className="w-5 h-5 text-[#f48c06] fill-[#f48c06]" />
-                  </div>
-                  <div>
-                    <p className="text-[11px] text-gray-500 font-bold tracking-wider mb-0.5">Call Us Now</p>
-                    <a href="tel:7352527752" className="text-[14px] font-black text-[#0a1c5d]">
-                      7352527752, 9060425858
-                    </a>
-                  </div>
-                </div>
-                <div className="hidden sm:block w-px bg-gray-200 my-2" />
-                <div className="flex items-center gap-4 flex-1">
-                  <div className="w-10 h-10 rounded-full bg-[#fff4e6] flex items-center justify-center shrink-0">
-                    <MapPin className="w-5 h-5 text-[#f48c06] fill-[#f48c06]" />
-                  </div>
-                  <div>
-                    <p className="text-[11px] text-gray-500 font-bold tracking-wider mb-0.5">Visit Us</p>
-                    <p className="text-[12px] font-bold text-[#0a1c5d] leading-tight">
-                      Kushwaha Market, Parsauni<br />Near Parsauni Petrol Pump
-                    </p>
-                  </div>
-                </div>
               </div>
 
             </div>
 
             {/* Mobile Image (Visible only on small screens) */}
-            <div className="w-full mt-10 lg:hidden relative">
-              <div className="relative w-full aspect-[4/3] rounded-[30px] overflow-hidden shadow-xl">
+            <div className="w-full mt-8 lg:hidden relative">
+              <div className="relative w-full aspect-[16/9] rounded-[24px] overflow-hidden shadow-xl">
                 <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=800" className="w-full h-full object-cover" />
               </div>
 
