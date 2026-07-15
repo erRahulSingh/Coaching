@@ -147,7 +147,7 @@ export default function AboutUsPage() {
       </header>
 
       {/* --- Breadcrumb & Hero Section (Image 1) --- */}
-      <section className="py-12 bg-transparent relative z-10">
+      <section className="py-8 lg:py-12 bg-transparent relative z-10">
         <div className="max-w-[1250px] mx-auto px-4 md:px-8">
           
 
@@ -169,18 +169,18 @@ export default function AboutUsPage() {
                 JMS Modern Classes is a premium study destination for students who dream big and work hard. We provide the perfect blend of peaceful environment, expert guidance, and 24x7 access to help you achieve your goals.
               </p>
 
-              <div className="flex gap-4">
+              <div className="flex flex-row gap-2 sm:gap-4 w-full">
                 <button
                   onClick={() => setIsAdmissionOpen(true)}
-                  className="px-8 py-3.5 bg-[#0a1c5d] hover:bg-[#071444] text-white font-bold rounded-[8px] transition-all duration-300 text-[14px] tracking-wide flex items-center gap-2 shadow-lg hover:scale-105 active:scale-95"
+                  className="flex-1 sm:flex-none px-2 sm:px-8 py-3.5 bg-[#0a1c5d] hover:bg-[#071444] text-white font-bold rounded-[8px] transition-all duration-300 text-[10px] sm:text-[14px] tracking-wide flex items-center justify-center gap-1 sm:gap-2 shadow-lg hover:scale-105 active:scale-95 whitespace-nowrap"
                 >
-                  ENROLL NOW <ArrowRight className="w-5 h-5" />
+                  ENROLL NOW <ArrowRight className="w-3 h-3 sm:w-5 sm:h-5" />
                 </button>
                 <button
                   onClick={() => handleNavClick("courses")}
-                  className="px-8 py-3.5 border-2 border-[#0a1c5d] text-[#0a1c5d] font-bold rounded-[8px] transition-all duration-300 text-[14px] tracking-wide flex items-center gap-2 hover:bg-[#0a1c5d] hover:text-white hover:scale-105 active:scale-95"
+                  className="flex-1 sm:flex-none px-2 sm:px-8 py-3.5 border-2 border-[#0a1c5d] text-[#0a1c5d] font-bold rounded-[8px] transition-all duration-300 text-[10px] sm:text-[14px] tracking-wide flex items-center justify-center gap-1 sm:gap-2 hover:bg-[#0a1c5d] hover:text-white hover:scale-105 active:scale-95 whitespace-nowrap"
                 >
-                  EXPLORE COURSES <ArrowRight className="w-5 h-5" />
+                  EXPLORE <ArrowRight className="w-3 h-3 sm:w-5 sm:h-5" />
                 </button>
               </div>
             </div>
@@ -210,7 +210,7 @@ export default function AboutUsPage() {
           </div>
 
           {/* Stats Bar */}
-          <div className="gradient-border-card p-8 grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4 w-full mt-20">
+          <div className="card-style-2 p-4 sm:p-8 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 lg:gap-4 w-full mt-10 sm:mt-20">
             {[
               { 
                 value: "1000+", 
@@ -242,10 +242,10 @@ export default function AboutUsPage() {
                   {stat.icon}
                 </div>
                 <div className="text-left">
-                  <span className="block text-[28px] md:text-[32px] font-sans font-black text-[#0a1c5d] leading-none mb-1">
+                  <span className="block text-[22px] sm:text-[28px] md:text-[32px] font-sans font-black text-[#0a1c5d] leading-none mb-1">
                     {stat.value}
                   </span>
-                  <span className="block text-[12px] md:text-[13px] font-semibold text-gray-500 leading-tight">
+                  <span className="block text-[10px] sm:text-[12px] md:text-[13px] font-semibold text-gray-500 leading-tight">
                     {stat.label}
                   </span>
                 </div>
@@ -257,7 +257,7 @@ export default function AboutUsPage() {
       </section>
 
       {/* --- Mission Section (Image 2) --- */}
-      <section className="py-20 bg-transparent relative z-10 border-t border-gray-150">
+      <section className="py-8 lg:py-20 bg-transparent relative z-10 border-t border-gray-150">
         <div className="max-w-[1250px] mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
@@ -322,15 +322,15 @@ export default function AboutUsPage() {
       </section>
 
       {/* --- Why Choose Section (Image 3) --- */}
-      <section className="py-20 bg-transparent relative z-10 border-t border-gray-150">
+      <section className="py-8 lg:py-20 bg-transparent relative z-10 border-t border-gray-150">
         <div className="max-w-[1250px] mx-auto px-4 md:px-8 text-center">
           
-          <h3 className="text-[28px] md:text-[36px] font-sans font-black text-[#0a1c5d] mb-16">
+          <h3 className="text-[28px] md:text-[36px] font-sans font-black text-[#0a1c5d] mb-8 lg:mb-16">
             WHY CHOOSE <span className="text-[#f48c06]">JMS MODERN CLASSES?</span>
           </h3>
 
           {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full mb-20">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 w-full mb-10 sm:mb-20">
             {[
               {
                 title: "Expert Faculty",
@@ -365,13 +365,13 @@ export default function AboutUsPage() {
             ].map((card, idx) => (
               <div 
                 key={idx} 
-                className="gradient-border-card p-8 flex flex-col items-center text-center group"
+                className="card-style-2 p-4 sm:p-8 flex flex-col items-center text-center group"
               >
-                <div className="w-14 h-14 rounded-full bg-slate-50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-slate-50 flex items-center justify-center mb-3 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
                   {card.icon}
                 </div>
-                <h4 className="text-[18px] font-black text-[#0a1c5d] mb-3">{card.title}</h4>
-                <p className="text-[14px] text-gray-500 font-semibold leading-relaxed">{card.desc}</p>
+                <h4 className="text-[14px] sm:text-[18px] font-black text-[#0a1c5d] mb-1 sm:mb-3">{card.title}</h4>
+                <p className="text-[11px] sm:text-[14px] text-gray-500 font-semibold leading-relaxed">{card.desc}</p>
               </div>
             ))}
           </div>
@@ -410,7 +410,7 @@ export default function AboutUsPage() {
             </div>
 
             {/* Topper Card (Spans 1 col) */}
-            <div className="col-span-1 gradient-border-card p-8 flex flex-col items-center text-center justify-between">
+            <div className="col-span-1 card-style-1 p-8 flex flex-col items-center text-center justify-between">
               <div>
                 <span className="text-[#f48c06] font-cursive text-2xl italic mb-1 block">
                   Our Pride
@@ -424,7 +424,7 @@ export default function AboutUsPage() {
               </div>
 
               {/* laurel wreath and avatar wrapper */}
-              <div className="w-[140px] h-[140px] flex items-center justify-center relative mb-6">
+              <div className="hidden lg:flex w-[140px] h-[140px] items-center justify-center relative mb-6">
                 {/* Wreath */}
                 <svg className="absolute inset-0 w-full h-full text-[#f48c06]" viewBox="0 0 100 100" fill="currentColor">
                   <path d="M 50,85 C 38,85 24,75 22,50 C 20.5,32 30,18 42,12 C 40,16 35,26 36,40 C 37,54 44,70 50,85 Z" fill="none" stroke="currentColor" strokeWidth="2" />
@@ -464,7 +464,7 @@ export default function AboutUsPage() {
       </section>
 
       {/* --- Footer & Contact Block --- */}
-      <footer className="pt-20 pb-10 bg-black relative z-10 border-t border-gray-900">
+      <footer className="pt-12 pb-8 bg-black relative z-10 border-t border-gray-900">
         <div className="max-w-[1250px] w-full mx-auto px-4 md:px-8">
           
           {/* Top Info Row */}

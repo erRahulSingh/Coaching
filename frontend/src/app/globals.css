@@ -211,3 +211,30 @@ html.lenis {
 .gradient-border-card:hover::before {
   background: linear-gradient(135deg, #0a1c5d, #f48c06);
 }
+
+/* --- New Card Styles (Premium Redesign) --- */
+
+/* Card Style 1: Thick Left & Bottom Border (Image 1) */
+.card-style-1 {
+  @apply relative bg-white rounded-[16px] border border-gray-100 border-l-4 border-b-4 border-l-[#0a1c5d] border-b-[#0a1c5d] shadow-[0_4px_20px_rgb(0,0,0,0.04)] transition-all duration-300 z-10;
+}
+.card-style-1:hover {
+  @apply shadow-[0_8px_30px_rgb(0,0,0,0.12)] -translate-y-1;
+}
+
+/* Card Style 2: Thick Top Border (Image 2) */
+.card-style-2 {
+  @apply relative bg-white rounded-[16px] border border-gray-100 border-t-4 border-t-[#f48c06] shadow-[0_4px_20px_rgb(0,0,0,0.04)] transition-all duration-300 z-10;
+}
+.card-style-2:hover {
+  @apply shadow-[0_8px_30px_rgb(0,0,0,0.12)] -translate-y-1;
+}
+
+/* Card Style 3: Top Border with Full Width Button (Image 3) */
+/* (We reuse card-style-2 logic but override the border-t color via inline styles or tailwind classes dynamically in React) */
+.card-style-3 {
+  @apply relative bg-white rounded-[16px] border border-gray-100 border-t-4 shadow-[0_4px_20px_rgb(0,0,0,0.04)] transition-all duration-300 z-10 flex flex-col;
+}
+.card-style-3:hover {
+  @apply shadow-[0_8px_30px_rgb(0,0,0,0.12)] -translate-y-1;
+}

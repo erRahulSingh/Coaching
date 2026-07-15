@@ -152,7 +152,7 @@ export default function FacilitiesPage() {
       </header>
 
       {/* --- Breadcrumb & Hero Section (Image 1) --- */}
-      <section className="py-12 bg-transparent relative z-10">
+      <section className="py-8 lg:py-12 bg-transparent relative z-10">
         <div className="max-w-[1250px] mx-auto px-4 md:px-8">
           
           {/* Breadcrumb Navigation */}
@@ -227,7 +227,7 @@ export default function FacilitiesPage() {
       </section>
 
       {/* --- Premium Facilities Grid (Image 1 bottom) --- */}
-      <section className="py-20 bg-transparent relative z-10 border-t border-gray-150">
+      <section className="py-8 lg:py-20 bg-transparent relative z-10 border-t border-gray-150">
         <div className="max-w-[1250px] mx-auto px-4 md:px-8 text-center">
           
           <span className="text-[12px] md:text-[13px] font-black text-[#f48c06] uppercase tracking-[0.15em] mb-3 inline-block">
@@ -245,7 +245,7 @@ export default function FacilitiesPage() {
           </div>
 
           {/* 10 Facilities Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 w-full">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-6 w-full">
             {[
               {
                 title: "Fully AC Furnished Library",
@@ -310,20 +310,20 @@ export default function FacilitiesPage() {
             ].map((item, idx) => (
               <div 
                 key={idx} 
-                className="gradient-border-card flex flex-col justify-between overflow-hidden group"
+                className="card-style-1 flex flex-col justify-between overflow-hidden group"
               >
-                <div className="p-5 flex flex-col items-center text-center">
-                  <div className="w-11 h-11 rounded-full bg-slate-50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                    {item.icon}
+                <div className="p-3 sm:p-5 flex flex-col items-center text-center">
+                  <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-slate-50 flex items-center justify-center mb-2 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <div className="scale-75 sm:scale-100">{item.icon}</div>
                   </div>
-                  <h4 className="text-[14px] font-black text-[#0a1c5d] mb-2 leading-snug min-h-[40px] flex items-center justify-center">
+                  <h4 className="text-[11px] sm:text-[14px] font-black text-[#0a1c5d] mb-1 sm:mb-2 leading-snug min-h-[32px] sm:min-h-[40px] flex items-center justify-center">
                     {item.title}
                   </h4>
-                  <p className="text-[11px] text-gray-500 font-semibold leading-relaxed">
+                  <p className="text-[9px] sm:text-[11px] text-gray-500 font-semibold leading-relaxed">
                     {item.desc}
                   </p>
                 </div>
-                <div className="w-full h-[110px] overflow-hidden mt-auto">
+                <div className="w-full h-[80px] sm:h-[110px] overflow-hidden mt-auto">
                   <img 
                     src={item.img} 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
@@ -338,11 +338,11 @@ export default function FacilitiesPage() {
       </section>
 
       {/* --- Horizontal Stats & CTA Section (Image 2) --- */}
-      <section className="py-20 bg-transparent relative z-10 border-t border-gray-150">
+      <section className="py-8 lg:py-20 bg-transparent relative z-10 border-t border-gray-150">
         <div className="max-w-[1250px] mx-auto px-4 md:px-8">
           
           {/* Horizontal Stats Bar */}
-          <div className="gradient-border-card p-6 md:p-8 flex flex-col md:flex-row justify-around items-center gap-6 md:gap-4 w-full mb-16">
+          <div className="card-style-2 p-4 sm:p-6 md:p-8 grid grid-cols-2 md:flex md:flex-row justify-around items-center gap-4 sm:gap-6 md:gap-4 w-full mb-8 lg:mb-16">
             {[
               { label: "1000+", desc: "Happy Students", icon: <Users className="w-7 h-7 text-[#0a1c5d]" /> },
               { label: "24/7", desc: "Library Access", icon: <Clock className="w-7 h-7 text-[#0a1c5d]" /> },
@@ -392,25 +392,25 @@ export default function FacilitiesPage() {
                   We are committed to providing the best environment and facilities to help you achieve your goals.
                 </p>
                 
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-row flex-wrap gap-2 sm:gap-4 w-full">
                   <button
                     onClick={() => setIsAdmissionOpen(true)}
-                    className="px-8 py-3.5 bg-[#f48c06] hover:bg-[#d07403] text-white font-bold rounded-[8px] transition-all duration-300 text-[14px] tracking-wide flex items-center gap-2 shadow-lg hover:scale-105 active:scale-95"
+                    className="flex-1 sm:flex-none px-2 sm:px-8 py-3 sm:py-3.5 bg-[#f48c06] hover:bg-[#d07403] text-white font-bold rounded-[8px] transition-all duration-300 text-[10px] sm:text-[14px] tracking-wide flex items-center justify-center gap-1 sm:gap-2 shadow-lg hover:scale-105 active:scale-95 whitespace-nowrap"
                   >
-                    ENROLL NOW <ArrowRight className="w-5 h-5" />
+                    ENROLL NOW <ArrowRight className="w-3 h-3 sm:w-5 sm:h-5" />
                   </button>
                   <button
                     onClick={() => handleNavClick("facilities")}
-                    className="px-8 py-3.5 border-2 border-white/35 text-white font-bold rounded-[8px] transition-all duration-300 text-[14px] tracking-wide flex items-center gap-2 hover:bg-white hover:text-[#0a1c5d] hover:scale-105 active:scale-95"
+                    className="flex-1 sm:flex-none px-2 sm:px-8 py-3 sm:py-3.5 border-2 border-white/35 text-white font-bold rounded-[8px] transition-all duration-300 text-[10px] sm:text-[14px] tracking-wide flex items-center justify-center gap-1 sm:gap-2 hover:bg-white hover:text-[#0a1c5d] hover:scale-105 active:scale-95 whitespace-nowrap"
                   >
-                    VISIT LIBRARY <ArrowRight className="w-5 h-5" />
+                    LIBRARY <ArrowRight className="w-3 h-3 sm:w-5 sm:h-5" />
                   </button>
                 </div>
               </div>
             </div>
 
             {/* Contact Sidebar Card (Spans 1 col) */}
-            <div className="gradient-border-card p-8 flex flex-col items-center justify-center text-center">
+            <div className="card-style-1 p-8 flex flex-col items-center justify-center text-center">
               
               <div className="w-20 h-20 rounded-full bg-[#f48c06] flex items-center justify-center mb-6 shadow-md shadow-orange-500/10">
                 <Phone className="w-9 h-9 text-white fill-white" />
@@ -440,7 +440,7 @@ export default function FacilitiesPage() {
       </section>
 
       {/* --- Footer & Contact Block --- */}
-      <footer className="pt-20 pb-10 bg-black relative z-10 border-t border-gray-900">
+      <footer className="pt-12 pb-8 bg-black relative z-10 border-t border-gray-900">
         <div className="max-w-[1250px] w-full mx-auto px-4 md:px-8">
           
           {/* Top Info Row */}

@@ -340,7 +340,7 @@ export default function LandingPage() {
       </header>
 
       {/* --- Hero Section --- */}
-      <section id="home" className="bg-white z-10 pt-8 pb-16 lg:py-10 flex items-center">
+      <section id="home" className="bg-white z-10 pt-4 pb-8 lg:py-6 flex items-center">
 
         <div className="max-w-[1250px] w-full mx-auto relative lg:min-h-[550px] flex items-center px-4 md:px-8">
 
@@ -348,7 +348,7 @@ export default function LandingPage() {
           <div className="absolute top-0 right-4 md:right-8 w-[55%] h-full z-0 hidden lg:block rounded-r-[40px] overflow-hidden">
             <svg viewBox="0 0 1000 1000" className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
               {/* Image */}
-              <image href="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1200" width="1000" height="1000" preserveAspectRatio="xMidYMid slice" />
+              <image href="https://images.unsplash.com/photo-1544717302-de2939b7ef71?q=80&w=1200" width="1000" height="1000" preserveAspectRatio="xMidYMid slice" />
 
               {/* White Overlay to create curved mask */}
               <path d="M 0,0 L 450,0 C 150,350 150,750 650,1000 L 0,1000 Z" fill="#ffffff" />
@@ -360,25 +360,14 @@ export default function LandingPage() {
               <path d="M 230,700 C 350,850 500,950 650,1000" fill="none" stroke="#0a1c5d" strokeWidth="35" strokeLinecap="round" />
             </svg>
 
-            {/* OPEN 24 HOURS Badge */}
-            <div className="absolute top-1/2 right-[18%] xl:right-[25%] -translate-y-1/2 w-[220px] h-[220px] rounded-full bg-white shadow-2xl flex items-center justify-center p-2 z-20">
-              <div className="w-full h-full rounded-full border-[6px] border-[#f48c06] flex items-center justify-center p-2">
-                <div className="w-full h-full rounded-full border-[2px] border-dashed border-[#0a1c5d] flex items-center justify-center">
-                  <div className="flex flex-col items-center justify-center">
-                    <span className="text-[22px] uppercase font-black text-[#0a1c5d] tracking-widest leading-none">OPEN</span>
-                    <span className="text-[64px] font-black text-[#0a1c5d] leading-none my-1">24</span>
-                    <span className="text-[20px] uppercase font-black text-[#0a1c5d] tracking-widest leading-none">HOURS</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+
           </div>
 
           {/* Content Container */}
-          <div className="w-full relative z-10 flex flex-col lg:flex-row items-center">
+          <div className="w-full relative z-10 flex flex-row items-center justify-between gap-2">
 
             {/* Left Content Column */}
-            <div className="w-full lg:w-[60%] flex flex-col items-start text-left pt-6 lg:pt-0">
+            <div className="w-[60%] lg:w-[60%] flex flex-col items-start text-left pt-2 lg:pt-0">
 
               {/* Padhaai Aapki, Mahol Hamara badge */}
               <div className="relative inline-flex items-center mb-8 select-none">
@@ -398,90 +387,65 @@ export default function LandingPage() {
               </div>
 
               {/* Main Heading */}
-              <h2 className="font-sans font-black tracking-tight leading-[1.05] mb-2">
-                <span className="block text-[34px] md:text-[46px] xl:text-[50px] text-[#0a1c5d]">JMS MODERN</span>
-                <span className="block text-[34px] md:text-[46px] xl:text-[50px] text-[#f48c06]">CLASSES</span>
+              <h2 className="font-sans font-black tracking-tight leading-[1.05] mb-1 sm:mb-2">
+                <span className="block text-[22px] sm:text-[34px] md:text-[46px] xl:text-[50px] text-[#0a1c5d]">JMS MODERN</span>
+                <span className="block text-[22px] sm:text-[34px] md:text-[46px] xl:text-[50px] text-[#f48c06]">CLASSES</span>
               </h2>
-              <h3 className="text-[18px] md:text-[22px] xl:text-[26px] font-sans font-black tracking-wider text-[#0a1c5d] mb-4">
+              <h3 className="text-[12px] sm:text-[18px] md:text-[22px] xl:text-[26px] font-sans font-black tracking-wider text-[#0a1c5d] mb-2 sm:mb-4">
                 COACHING + LIBRARY
               </h3>
 
-              {/* Location */}
-              <div className="inline-flex items-center gap-2 mb-4">
-                <MapPin className="w-5 h-5 text-[#0a1c5d] shrink-0" />
-                <p className="text-[12px] md:text-[14px] text-[#0a1c5d] font-bold">
-                  Kushwaha Market, Parsauni Near Parsauni Petrol Pump
-                </p>
-              </div>
+
 
               {/* Description */}
-              <p className="text-[11px] md:text-[12px] text-gray-500 font-medium leading-relaxed max-w-[500px] mb-6">
+              <p className="text-[9px] sm:text-[11px] md:text-[12px] text-gray-500 font-medium leading-relaxed max-w-[500px] mb-4 sm:mb-6 hidden sm:block">
                 The perfect place to study, grow and achieve.<br />
                 Best environment, expert guidance and 24x7 access<br />
                 to help you achieve your goals.
               </p>
 
               {/* 4 Feature Badges Row */}
-              <div className="flex flex-wrap gap-2 w-full max-w-[550px] mb-6">
+              <div className="flex flex-nowrap sm:flex-wrap justify-between sm:justify-start gap-1 sm:gap-2 w-full max-w-[550px] mb-4 sm:mb-6">
                 {[
-                  { title: "OPEN 24/7", subtitle: "Learn Anytime", iconPath: <Clock className="w-5 h-5 text-[#0a1c5d] stroke-[2]" /> },
-                  { title: "Best Environment", subtitle: "for Study", iconPath: <svg className="w-5 h-5 text-[#0a1c5d]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> },
-                  { title: "Limited Seats", subtitle: "Hurry Up!", iconPath: <svg className="w-5 h-5 text-[#0a1c5d]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M9 14l2 2 4-4"></path></svg> },
-                  { title: "Experienced", subtitle: "Faculty", iconPath: <Award className="w-5 h-5 text-[#f48c06] stroke-[2]" /> },
+                  { title: "OPEN 24/7", subtitle: "Learn Anytime", iconPath: <Clock className="w-3 h-3 sm:w-5 sm:h-5 text-[#0a1c5d] stroke-[2]" /> },
+                  { title: "Best Environment", subtitle: "for Study", iconPath: <svg className="w-3 h-3 sm:w-5 sm:h-5 text-[#0a1c5d]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> },
+                  { title: "Limited Seats", subtitle: "Hurry Up!", iconPath: <svg className="w-3 h-3 sm:w-5 sm:h-5 text-[#0a1c5d]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M9 14l2 2 4-4"></path></svg> },
+                  { title: "Experienced", subtitle: "Faculty", iconPath: <Award className="w-3 h-3 sm:w-5 sm:h-5 text-[#f48c06] stroke-[2]" /> },
                 ].map((badge, idx) => (
-                  <div key={idx} className="bg-white px-2 py-3 rounded-[12px] border border-[#f48c06]/30 shadow-[0_2px_10px_-3px_rgba(0,0,0,0.05)] flex flex-col items-center text-center flex-1 min-w-[100px] max-w-[130px]">
-                    <div className="mb-1.5">
-                      {badge.title === "Experienced" ? (
-                        <div className="w-8 h-8 rounded-full flex items-center justify-center">
-                          {badge.iconPath}
-                        </div>
-                      ) : (
-                        <div className="w-8 h-8 rounded-full flex items-center justify-center">
-                          {badge.iconPath}
-                        </div>
-                      )}
+                  <div key={idx} className="bg-white px-0.5 py-1.5 sm:px-2 sm:py-3 rounded-[6px] sm:rounded-[12px] border border-[#f48c06]/30 shadow-[0_2px_10px_-3px_rgba(0,0,0,0.05)] flex flex-col items-center justify-center text-center flex-1 min-w-0 max-w-[24%] sm:min-w-[100px] sm:max-w-[130px] overflow-hidden">
+                    <div className="mb-0.5 sm:mb-1">
+                      <div className="w-5 h-5 sm:w-8 sm:h-8 rounded-full flex items-center justify-center">
+                        {badge.iconPath}
+                      </div>
                     </div>
-                    <h4 className="text-[11px] font-black text-[#0a1c5d] leading-tight mb-0.5">{badge.title}</h4>
-                    <p className="text-[10px] text-[#0a1c5d] font-semibold">{badge.subtitle}</p>
+                    <h4 className="text-[7px] sm:text-[11px] font-black text-[#0a1c5d] leading-tight mb-0.5 truncate w-full px-0.5">{badge.title}</h4>
+                    <p className="text-[6px] sm:text-[10px] text-[#0a1c5d] font-semibold truncate w-full px-0.5">{badge.subtitle}</p>
                   </div>
                 ))}
               </div>
 
               {/* CTA Buttons */}
-              <div className="flex gap-4">
+              <div className="flex flex-row gap-1 sm:gap-4 w-full">
                 <button
                   onClick={() => setIsAdmissionOpen(true)}
-                  className="px-6 py-2.5 bg-[#0a1c5d] hover:bg-[#071444] text-white font-bold rounded-[8px] transition-all duration-300 text-[13px] tracking-wide flex items-center gap-2 shadow-lg"
+                  className="flex-1 sm:flex-none px-1 sm:px-6 py-2 sm:py-2.5 bg-[#0a1c5d] hover:bg-[#071444] text-white font-bold rounded-[6px] sm:rounded-[8px] transition-all duration-300 text-[9px] sm:text-[13px] tracking-wide flex items-center justify-center gap-1 shadow-lg whitespace-nowrap"
                 >
-                  ENROLL NOW <ArrowRight className="w-4 h-4" />
+                  ENROLL NOW <ArrowRight className="w-2.5 h-2.5 sm:w-4 sm:h-4" />
                 </button>
                 <button
                   onClick={() => handleNavClick("courses")}
-                  className="px-6 py-2.5 border-2 border-[#0a1c5d] text-[#0a1c5d] font-bold rounded-[8px] transition-all duration-300 text-[13px] tracking-wide flex items-center gap-2 hover:bg-[#0a1c5d] hover:text-white"
+                  className="flex-1 sm:flex-none px-1 sm:px-6 py-2 sm:py-2.5 border-2 border-[#0a1c5d] text-[#0a1c5d] font-bold rounded-[6px] sm:rounded-[8px] transition-all duration-300 text-[9px] sm:text-[13px] tracking-wide flex items-center justify-center gap-1 hover:bg-[#0a1c5d] hover:text-white whitespace-nowrap"
                 >
-                  EXPLORE MORE <ArrowRight className="w-4 h-4" />
+                  EXPLORE MORE <ArrowRight className="w-2.5 h-2.5 sm:w-4 sm:h-4" />
                 </button>
               </div>
 
             </div>
 
             {/* Mobile Image (Visible only on small screens) */}
-            <div className="w-full mt-8 lg:hidden relative">
-              <div className="relative w-full aspect-[16/9] rounded-[24px] overflow-hidden shadow-xl">
-                <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=800" className="w-full h-full object-cover" />
-              </div>
-
-              {/* Mobile Badge */}
-              <div className="absolute bottom-4 right-4 w-[120px] h-[120px] rounded-full bg-white shadow-2xl flex items-center justify-center p-1 z-20">
-                <div className="w-full h-full rounded-full border-[4px] border-[#f48c06] flex items-center justify-center p-1">
-                  <div className="w-full h-full rounded-full border-[2px] border-dashed border-[#0a1c5d] flex items-center justify-center">
-                    <div className="flex flex-col items-center justify-center">
-                      <span className="text-[12px] uppercase font-black text-[#0a1c5d] tracking-widest leading-none">OPEN</span>
-                      <span className="text-[32px] font-black text-[#0a1c5d] leading-none my-1">24</span>
-                      <span className="text-[10px] uppercase font-black text-[#0a1c5d] tracking-widest leading-none">HOURS</span>
-                    </div>
-                  </div>
-                </div>
+            <div className="w-[38%] lg:hidden relative shrink-0">
+              <div className="relative w-full aspect-[3/4] sm:aspect-square rounded-[16px] overflow-hidden shadow-xl">
+                <img src="https://images.unsplash.com/photo-1544717302-de2939b7ef71?q=80&w=800" className="w-full h-full object-cover" />
               </div>
             </div>
 
@@ -490,12 +454,12 @@ export default function LandingPage() {
       </section>
 
       {/* --- About Us Section --- */}
-      <section id="about-us" className="py-20 bg-white relative z-10">
+      <section id="about-us" className="py-8 lg:py-12 bg-white relative z-10">
         <div className="max-w-[1250px] mx-auto px-4 md:px-8">
           <div className="flex flex-col lg:flex-row items-center gap-12">
 
             {/* Left Image */}
-            <div className="w-full lg:w-[45%] shrink-0">
+            <div className="hidden lg:block w-full lg:w-[45%] shrink-0">
               <img src="https://images.unsplash.com/photo-1568667256549-094345857637?q=80&w=800" alt="JMS Modern Classes Front" className="w-full h-[350px] md:h-[450px] rounded-[24px] shadow-lg object-cover" />
             </div>
 
@@ -512,7 +476,7 @@ export default function LandingPage() {
               </p>
 
               {/* 4 Stats Cards */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 w-full">
                 {[
                   { value: "24/7", label: "Library Access" },
                   { value: "1000+", label: "Happy Students" },
@@ -521,12 +485,12 @@ export default function LandingPage() {
                 ].map((stat, idx) => (
                   <div
                     key={idx}
-                    className="bg-white p-5 rounded-[16px] border border-gray-150 shadow-[0_4px_20px_-5px_rgba(0,0,0,0.05)] text-center flex flex-col justify-center items-center"
+                    className="card-style-2 p-3 sm:p-5 text-center flex flex-col justify-center items-center"
                   >
-                    <span className="block text-[28px] md:text-[32px] font-sans font-black text-[#f48c06] leading-none mb-2">
+                    <span className="block text-[20px] sm:text-[28px] md:text-[32px] font-sans font-black text-[#f48c06] leading-none mb-1 sm:mb-2">
                       {stat.value}
                     </span>
-                    <span className="block text-[11px] md:text-[12px] font-bold text-[#0a1c5d] leading-tight">
+                    <span className="block text-[9px] sm:text-[11px] md:text-[12px] font-bold text-[#0a1c5d] leading-tight">
                       {stat.label}
                     </span>
                   </div>
@@ -539,7 +503,7 @@ export default function LandingPage() {
       </section>
 
       {/* --- Facilities Section --- */}
-      <section id="facilities" className="pt-10 pb-20 bg-white relative z-10 border-t border-gray-100">
+      <section id="facilities" className="py-8 lg:py-12 bg-white relative z-10 border-t border-gray-100">
         <div className="max-w-[1250px] w-full mx-auto px-4 md:px-8 text-center">
 
           <div className="text-[12px] font-bold text-[#0a1c5d] uppercase tracking-wider mb-3">OUR FACILITIES</div>
@@ -588,10 +552,10 @@ export default function LandingPage() {
             ].map((fac, idx) => (
               <div
                 key={idx}
-                className="bg-white px-3 py-6 rounded-[16px] border border-gray-150 shadow-[0_4px_20px_-5px_rgba(0,0,0,0.05)] text-center flex flex-col items-center justify-center flex-1 min-w-[120px] max-w-[140px]"
+                className="card-style-1 px-2 py-4 sm:px-3 sm:py-6 text-center flex flex-col items-center justify-center flex-1 min-w-[90px] sm:min-w-[120px] max-w-[110px] sm:max-w-[140px]"
               >
-                <div className="mb-4">{fac.icon}</div>
-                <h4 className="text-[11px] font-black text-[#0a1c5d] leading-tight whitespace-pre-line">
+                <div className="mb-2 sm:mb-4 scale-75 sm:scale-100">{fac.icon}</div>
+                <h4 className="text-[9px] sm:text-[11px] font-black text-[#0a1c5d] leading-tight whitespace-pre-line">
                   {fac.label}
                 </h4>
               </div>
@@ -602,12 +566,12 @@ export default function LandingPage() {
       </section>
 
       {/* --- Topper Section --- */}
-      <section id="topper" className="py-20 bg-[#fbfdff] relative z-10 border-t border-gray-100">
+      <section id="topper" className="py-8 lg:py-12 bg-[#fbfdff] relative z-10 border-t border-gray-100">
         <div className="max-w-[1250px] mx-auto px-4 md:px-8">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
 
             {/* Left Topper Image */}
-            <div className="w-full lg:w-1/3 flex flex-col items-center">
+            <div className="hidden lg:flex w-full lg:w-1/3 flex-col items-center">
               <div className="relative w-[280px] h-[300px] flex items-center justify-center">
                 {/* Wreath */}
                 <svg className="absolute inset-0 w-full h-full text-[#f48c06]" viewBox="0 0 100 100" fill="currentColor">
@@ -658,7 +622,7 @@ export default function LandingPage() {
             </div>
 
             {/* Right Trophy */}
-            <div className="w-full lg:w-1/3 flex justify-center relative">
+            <div className="hidden lg:flex w-full lg:w-1/3 justify-center relative">
               <div className="relative bg-[#fbfdff] z-10 flex items-center justify-center">
                 <svg className="w-[280px] h-[280px] drop-shadow-2xl" viewBox="0 0 200 200" fill="none">
                   {/* Confetti */}
@@ -702,7 +666,7 @@ export default function LandingPage() {
       </section>
 
       {/* --- Courses Section --- */}
-      <section id="courses" className="py-8 bg-[#fbfdff] relative z-10 border-t border-gray-100">
+      <section id="courses" className="py-6 lg:py-10 bg-[#fbfdff] relative z-10 border-t border-gray-100">
         <div className="max-w-[1250px] w-full mx-auto px-4 md:px-8 text-center">
           <div className="text-[12px] font-bold text-[#0a1c5d] uppercase tracking-wider mb-3">OUR COURSES</div>
           <h3 className="text-[28px] md:text-[32px] font-sans font-black text-[#0a1c5d] mb-6">
@@ -711,7 +675,7 @@ export default function LandingPage() {
 
           <div className="flex flex-wrap justify-center gap-4 w-full">
             {["Class 9th", "Class 10th", "Class 11th", "Class 12th", "BSEB", "CBSE", "Competitive\nExams", "Foundation\nCourses"].map((course, idx) => (
-              <div key={idx} className="bg-white px-8 py-4 rounded-[12px] border border-gray-150 shadow-[0_4px_20px_-5px_rgba(0,0,0,0.05)] text-center flex items-center justify-center whitespace-pre-line text-[#0a1c5d] font-black text-[14px] hover:border-blue-200 transition-colors flex-1 min-w-[140px] max-w-[200px]">
+              <div key={idx} className="card-style-3 px-8 py-4 text-center flex items-center justify-center whitespace-pre-line text-[#0a1c5d] font-black text-[14px] flex-1 min-w-[140px] max-w-[200px] border-t-blue-500">
                 {course}
               </div>
             ))}
@@ -720,7 +684,7 @@ export default function LandingPage() {
       </section>
 
       {/* --- Testimonials Section --- */}
-      <section id="testimonials" className="py-8 bg-white relative z-10 border-t border-gray-100 overflow-hidden">
+      <section id="testimonials" className="py-6 lg:py-10 bg-white relative z-10 border-t border-gray-100 overflow-hidden">
         <style dangerouslySetInnerHTML={{
           __html: `
           @keyframes marqueeLeft {
@@ -785,7 +749,7 @@ export default function LandingPage() {
                   img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150"
                 }
               ].map((testimonial, idx) => (
-                <div key={idx} className="bg-[#fbfdff] p-6 rounded-[20px] border border-gray-150 shadow-[0_4px_20px_-5px_rgba(0,0,0,0.05)] flex flex-col text-left shrink-0 w-[300px] md:w-[400px]">
+                <div key={idx} className="card-style-1 p-6 flex flex-col text-left shrink-0 w-[300px] md:w-[400px]">
                   <div className="flex gap-4">
                     <svg className="w-8 h-8 text-[#2c4c99] shrink-0 mt-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                       <path d="M10 11h-4a3 3 0 0 1-3-3v-2a3 3 0 0 1 3-3h4v8zm11 0h-4a3 3 0 0 1-3-3v-2a3 3 0 0 1 3-3h4v8z" strokeLinecap="round" strokeLinejoin="round" />
@@ -811,11 +775,11 @@ export default function LandingPage() {
       </section>
 
       {/* --- Gallery Section --- */}
-      <section id="gallery" className="py-8 bg-white relative z-10 border-t border-gray-100">
+      <section id="gallery" className="py-6 lg:py-10 bg-white relative z-10 border-t border-gray-100">
         <div className="max-w-[1250px] w-full mx-auto px-4 md:px-8 text-center">
           <div className="text-[12px] font-bold text-[#0a1c5d] uppercase tracking-wider mb-6">OUR LIBRARY GALLERY</div>
 
-          <div className="flex flex-wrap justify-center gap-3 mb-8 w-full">
+          <div className="grid grid-cols-3 md:flex md:flex-wrap md:justify-center gap-1.5 md:gap-3 mb-8 w-full">
             {[
               "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=400",
               "https://images.unsplash.com/photo-1568667256549-094345857637?q=80&w=400",
@@ -824,7 +788,7 @@ export default function LandingPage() {
               "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=400",
               "https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?q=80&w=400"
             ].map((imgUrl, i) => (
-              <div key={i} className="flex-1 min-w-[200px] max-w-[350px] h-[160px] rounded-[12px] overflow-hidden border border-gray-150 shadow-sm relative group cursor-pointer">
+              <div key={i} className="w-full h-[80px] sm:h-[120px] md:h-[160px] md:flex-1 md:min-w-[200px] md:max-w-[350px] rounded-[6px] md:rounded-[12px] overflow-hidden border border-gray-150 shadow-sm relative group cursor-pointer">
                 <img src={imgUrl} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt={"Library " + i} />
               </div>
             ))}
@@ -837,7 +801,7 @@ export default function LandingPage() {
       </section>
 
       {/* --- Footer & Contact Block --- */}
-      <footer className="pt-20 pb-10 bg-black relative z-10 border-t border-gray-900">
+      <footer className="pt-12 pb-8 bg-black relative z-10 border-t border-gray-900">
         <div className="max-w-[1250px] w-full mx-auto px-4 md:px-8">
 
           {/* Top Info Row */}

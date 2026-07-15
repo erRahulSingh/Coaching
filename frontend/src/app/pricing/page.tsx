@@ -354,7 +354,7 @@ export default function PricingPage() {
       </header>
 
       {/* --- Breadcrumb & Hero Section (Image 1) --- */}
-      <section className="py-12 bg-transparent relative z-10">
+      <section className="py-8 lg:py-12 bg-transparent relative z-10">
         <div className="max-w-[1250px] mx-auto px-4 md:px-8">
           
           {/* Breadcrumb Navigation */}
@@ -428,9 +428,9 @@ export default function PricingPage() {
       </section>
 
       {/* --- Horizontal Stats Bar --- */}
-      <section className="py-8 bg-transparent relative z-10 border-t border-gray-150">
+      <section className="py-6 lg:py-8 bg-transparent relative z-10 border-t border-gray-150">
         <div className="max-w-[1250px] mx-auto px-4 md:px-8">
-          <div className="gradient-border-card p-6 md:p-8 flex flex-col md:flex-row justify-around items-center gap-6 md:gap-4 w-full">
+          <div className="card-style-2 p-4 sm:p-6 md:p-8 grid grid-cols-2 md:flex md:flex-row justify-around items-center gap-4 sm:gap-6 md:gap-4 w-full">
             {[
               { label: "1000+", desc: "Happy Students", icon: <Users className="w-7 h-7 text-[#0a1c5d]" /> },
               { label: "24/7", desc: "Library Access", icon: <Clock className="w-7 h-7 text-[#0a1c5d]" /> },
@@ -459,7 +459,7 @@ export default function PricingPage() {
       </section>
 
       {/* --- Plans Selector Grid (Image 1 middle/bottom) --- */}
-      <section className="py-20 bg-transparent relative z-10 border-t border-gray-150">
+      <section className="py-8 lg:py-20 bg-transparent relative z-10 border-t border-gray-150">
         <div className="max-w-[1250px] mx-auto px-4 md:px-8 text-center">
           
           <span className="text-[12px] md:text-[13px] font-black text-[#f48c06] uppercase tracking-[0.15em] mb-3 inline-block">
@@ -506,7 +506,12 @@ export default function PricingPage() {
             {BATCH_DATA[activeTab].map((batch, idx) => (
               <div 
                 key={idx}
-                className="gradient-border-card p-6 flex flex-col justify-between"
+                className={`card-style-3 p-6 ${
+                  batch.color.includes('0a1c5d') ? 'border-t-[#0a1c5d]' :
+                  batch.color.includes('f48c06') ? 'border-t-[#f48c06]' :
+                  batch.color.includes('10b981') ? 'border-t-[#10b981]' :
+                  'border-t-[#6366f1]'
+                }`}
               >
                 {/* Batch Header */}
                 <div className="text-center pb-6 border-b border-slate-100">
@@ -558,7 +563,7 @@ export default function PricingPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch text-left w-full">
             
             {/* Sibling Discount Card */}
-            <div className="gradient-border-card p-6 flex items-center gap-5">
+            <div className="card-style-2 p-6 flex items-center gap-5">
               <div className="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center shrink-0 border border-slate-100">
                 <Users className="w-5 h-5 text-[#0a1c5d]" />
               </div>
@@ -590,7 +595,7 @@ export default function PricingPage() {
                 </button>
               </div>
               {/* Floating student avatar in mockup */}
-              <div className="absolute right-0 bottom-0 top-0 w-[110px] hidden sm:block pointer-events-none z-0">
+              <div className="absolute right-0 bottom-0 top-0 w-[110px] hidden md:block pointer-events-none z-0">
                 <img 
                   src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300" 
                   alt="Student Helper Avatar" 
@@ -600,7 +605,7 @@ export default function PricingPage() {
             </div>
 
             {/* Merit Scholarship Card */}
-            <div className="gradient-border-card p-6 flex items-center gap-5">
+            <div className="card-style-2 p-6 flex items-center gap-5">
               <div className="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center shrink-0 border border-slate-100">
                 <Award className="w-5 h-5 text-[#0a1c5d]" />
               </div>
@@ -620,7 +625,7 @@ export default function PricingPage() {
       </section>
 
       {/* --- FAQ Section (Image 2 middle) --- */}
-      <section className="py-20 bg-transparent relative z-10 border-t border-gray-150">
+      <section className="py-8 lg:py-20 bg-transparent relative z-10 border-t border-gray-150">
         <div className="max-w-[1250px] mx-auto px-4 md:px-8 text-center">
           
           <span className="text-[12px] md:text-[13px] font-black text-blue-600 uppercase tracking-widest mb-3 inline-block">
@@ -641,7 +646,7 @@ export default function PricingPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center w-full mb-16 text-left relative z-10">
             
             {/* Left Column: Interactive Phone Mockup & Illustration */}
-            <div className="lg:col-span-5 flex justify-center items-center relative py-10">
+            <div className="hidden lg:flex lg:col-span-5 justify-center items-center relative py-10">
               {/* Background glowing rings */}
               <div className="absolute w-[300px] h-[300px] rounded-full bg-orange-400/10 blur-[50px] animate-pulse" />
               <div className="absolute w-[200px] h-[400px] rounded-full bg-blue-600/5 blur-[60px]" />
@@ -710,7 +715,7 @@ export default function PricingPage() {
             </div>
 
             {/* Right Column: Unified Accordion List (Gradient Border Card) */}
-            <div className="lg:col-span-7 gradient-border-card p-6 md:p-8 flex flex-col w-full shadow-lg">
+            <div className="lg:col-span-7 card-style-1 p-6 md:p-8 flex flex-col w-full shadow-lg">
               <div className="flex flex-col">
                 {faqs.map((item, idx) => {
                   const isOpen = openFaqIndex === idx;
@@ -751,7 +756,7 @@ export default function PricingPage() {
           </div>
 
           {/* Bottom Full-Width Banner (Image 2 bottom) */}
-          <div className="w-full rounded-[20px] overflow-hidden relative p-8 md:p-10 shadow-lg bg-[#040e2d] border border-blue-900/10 flex flex-col md:flex-row justify-between items-center gap-6 text-left">
+          <div className="w-full rounded-[20px] overflow-hidden relative p-6 sm:p-8 md:p-10 shadow-lg bg-[#040e2d] border border-blue-900/10 flex flex-col md:flex-row justify-between items-center gap-4 sm:gap-6 text-left">
             <div className="flex items-center gap-5 relative z-10">
               <div className="w-14 h-14 rounded-full bg-blue-900/30 flex items-center justify-center shrink-0">
                 <Calendar className="w-7 h-7 text-white" />
@@ -778,7 +783,7 @@ export default function PricingPage() {
       </section>
 
       {/* --- Footer & Contact Block --- */}
-      <footer className="pt-20 pb-10 bg-black relative z-10 border-t border-gray-900">
+      <footer className="pt-12 pb-8 bg-black relative z-10 border-t border-gray-900">
         <div className="max-w-[1250px] w-full mx-auto px-4 md:px-8">
           
           {/* Top Info Row */}
