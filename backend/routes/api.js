@@ -7,6 +7,7 @@ const Admin = require("../models/Admin");
 const Admission = require("../models/Admission");
 const Student = require("../models/Student");
 const Payment = require("../models/Payment");
+const Plan = require("../models/Plan");
 const admissionController = require("../controllers/admissionController");
 
 // Initialize Razorpay Instance
@@ -397,6 +398,264 @@ router.get("/admin/dashboard-stats", verifyToken, async (req, res) => {
       totalRevenue,
       successfulPayments: successfulPaymentsCount
     });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// --- Seed default plans if none exist ---
+async function seedDefaultPlans() {
+  try {
+    const planCount = await Plan.countDocuments();
+    if (planCount === 0) {
+      console.log("No plans found in database. Seeding default library shifts and course programs...");
+      
+      const defaultPlans = [
+        // Library Shifts
+        {
+          name: "Morning Shift",
+          type: "library",
+          time: "06:00 AM - 11:00 AM",
+          price: 300,
+          admissionFee: 0,
+          features: [
+            "AC Study Hall",
+            "High Speed Free Wi-Fi",
+            "Comfortable Cushioned Seat",
+            "RO Pure Mineral Water",
+            "CCTV Secure Zone",
+            "Daily Newspaper Access"
+          ],
+          color: "bg-[#0a1c5d] hover:bg-[#071444] text-white",
+          bulletColor: "text-[#0a1c5d]"
+        },
+        {
+          name: "Midday Shift",
+          type: "library",
+          time: "11:00 AM - 04:00 PM",
+          price: 400,
+          admissionFee: 0,
+          features: [
+            "AC Study Hall",
+            "High Speed Free Wi-Fi",
+            "Comfortable Cushioned Seat",
+            "RO Pure Mineral Water",
+            "CCTV Secure Zone",
+            "Daily Newspaper Access"
+          ],
+          color: "bg-[#f48c06] hover:bg-[#d07403] text-white",
+          bulletColor: "text-[#f48c06]"
+        },
+        {
+          name: "Evening Shift",
+          type: "library",
+          time: "04:00 PM - 09:00 PM",
+          price: 300,
+          admissionFee: 0,
+          features: [
+            "AC Study Hall",
+            "High Speed Free Wi-Fi",
+            "Comfortable Cushioned Seat",
+            "RO Pure Mineral Water",
+            "CCTV Secure Zone",
+            "Daily Newspaper Access"
+          ],
+          color: "bg-[#10b981] hover:bg-[#059669] text-white",
+          bulletColor: "text-[#10b981]"
+        },
+        {
+          name: "Normal Sheet Full Day",
+          type: "library",
+          time: "Full Day Access",
+          price: 500,
+          admissionFee: 0,
+          features: [
+            "24 Hours Study Access",
+            "Assigned Comfort Seat",
+            "AC Study Hall Environment",
+            "High Speed Free Wi-Fi",
+            "CCTV Surveillance 24/7",
+            "Pin-drop Silence Zone"
+          ],
+          color: "bg-[#6366f1] hover:bg-[#4f46e5] text-white",
+          bulletColor: "text-[#6366f1]"
+        },
+        {
+          name: "Special Sheet Full Day",
+          type: "library",
+          time: "Full Day Access (Reserved)",
+          price: 600,
+          admissionFee: 0,
+          features: [
+            "Reserved Dedicated Desk",
+            "Personal Lockable Cabinet",
+            "AC Study Hall Environment",
+            "High Speed Free Wi-Fi",
+            "RO Pure Mineral Water",
+            "24/7 Absolute Security"
+          ],
+          color: "bg-[#ec4899] hover:bg-[#db2777] text-white",
+          bulletColor: "text-[#ec4899]"
+        },
+        // Coaching Courses
+        {
+          name: "Class 9th & 10th Foundation",
+          type: "course",
+          time: "BSEB & CBSE Programs",
+          price: 0,
+          admissionFee: 0,
+          features: [
+            "Complete Syllabus Coverage",
+            "Daily Doubt Clearing Classes",
+            "Weekly Chapter-wise Tests",
+            "Free Comprehensive Study Material",
+            "Integrated Free Library Access"
+          ],
+          color: "bg-[#0a1c5d] hover:bg-[#071444] text-white",
+          bulletColor: "text-blue-500",
+          badge: "Coaching Class"
+        },
+        {
+          name: "Class 11th & 12th Academics",
+          type: "course",
+          time: "Science, Commerce & Arts",
+          price: 0,
+          admissionFee: 0,
+          features: [
+            "Lectures by Expert Faculties",
+            "Chapter-wise Revision Notes",
+            "NCERT & Board Pattern Prep",
+            "Weekly Mock Test & Performance Audit",
+            "Integrated Free Library Access"
+          ],
+          color: "bg-[#0a1c5d] hover:bg-[#071444] text-white",
+          bulletColor: "text-[#f48c06]",
+          badge: "Coaching Class"
+        },
+        {
+          name: "Competitive Exams target",
+          type: "course",
+          time: "JEE / NEET / NTSE / Olympiads",
+          price: 0,
+          admissionFee: 0,
+          features: [
+            "Specialized Competitive Curriculum",
+            "Mock Tests & National Ranking Series",
+            "One-to-One Mentor Support Sessions",
+            "Advanced Doubt Solving Desks",
+            "24/7 Library Study Desk Reserved"
+          ],
+          color: "bg-[#0a1c5d] hover:bg-[#071444] text-white",
+          bulletColor: "text-emerald-500",
+          badge: "Special Prep"
+        },
+        {
+          name: "Foundation Coaching Packages",
+          type: "course",
+          time: "Long-term Integrated Prep",
+          price: 0,
+          admissionFee: 0,
+          features: [
+            "Basic Concept Strengthening Sessions",
+            "Monthly Parent-Teacher Analysis",
+            "Regular Feedback & Mock Papers",
+            "Doubt Sessions with Expert Faculty",
+            "Integrated Free Library Access"
+          ],
+          color: "bg-[#0a1c5d] hover:bg-[#071444] text-white",
+          bulletColor: "text-purple-500",
+          badge: "Integrated Program"
+        }
+      ];
+
+      await Plan.insertMany(defaultPlans);
+      console.log("Seeding complete! Seeded 9 default plans.");
+    }
+  } catch (error) {
+    console.error("Error seeding default plans:", error);
+  }
+}
+seedDefaultPlans();
+
+// --- Plans API Routes ---
+
+// Get all plans (public)
+router.get("/plans", async (req, res) => {
+  try {
+    const plans = await Plan.find().sort({ createdAt: 1 });
+    res.json(plans);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Create new plan (admin protected)
+router.post("/admin/plans", verifyToken, async (req, res) => {
+  try {
+    const { name, type, time, price, admissionFee, features, color, bulletColor, badge } = req.body;
+    if (!name || !type || !time) {
+      return res.status(400).json({ error: "Name, type, and time are required fields." });
+    }
+
+    const newPlan = new Plan({
+      name,
+      type,
+      time,
+      price: price || 0,
+      admissionFee: admissionFee || 0,
+      features: features || [],
+      color: color || "bg-[#0a1c5d] hover:bg-[#071444] text-white",
+      bulletColor: bulletColor || "text-[#0a1c5d]",
+      badge
+    });
+
+    await newPlan.save();
+    res.status(201).json({ success: true, data: newPlan });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Update plan details (admin protected)
+router.put("/admin/plans/:id", verifyToken, async (req, res) => {
+  try {
+    const { name, time, price, admissionFee, features, color, bulletColor, badge } = req.body;
+    
+    const updatedPlan = await Plan.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: {
+          name,
+          time,
+          price: price !== undefined ? price : 0,
+          admissionFee: admissionFee !== undefined ? admissionFee : 0,
+          features: features || [],
+          color: color || "bg-[#0a1c5d] hover:bg-[#071444] text-white",
+          bulletColor: bulletColor || "text-[#0a1c5d]",
+          badge
+        }
+      },
+      { new: true }
+    );
+
+    if (!updatedPlan) {
+      return res.status(404).json({ error: "Plan not found." });
+    }
+
+    res.json({ success: true, data: updatedPlan });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Delete plan (admin protected)
+router.delete("/admin/plans/:id", verifyToken, async (req, res) => {
+  try {
+    const deletedPlan = await Plan.findByIdAndDelete(req.params.id);
+    if (!deletedPlan) {
+      return res.status(404).json({ error: "Plan not found." });
+    }
+    res.json({ success: true, message: "Plan deleted successfully!" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

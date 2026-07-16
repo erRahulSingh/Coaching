@@ -107,7 +107,7 @@ export default function AboutUsPage() {
           
           {/* Logo */}
           <div className="flex items-center cursor-pointer h-full" onClick={() => window.location.href = "/"}>
-            <img src="/images/jms.logo.png" alt="JMS Logo" className="h-[90px] w-auto object-contain" onError={(e) => {
+            <img src="/images/jms.logo.png" alt="JMS Logo" className="h-[55px] md:h-[65px] lg:h-[90px] w-auto object-contain" onError={(e) => {
               e.currentTarget.style.display = 'none';
               e.currentTarget.nextElementSibling?.classList.remove('hidden');
               e.currentTarget.nextElementSibling?.classList.add('flex');

@@ -197,6 +197,11 @@ export default function PricingPage() {
   const [student, setStudent] = useState<{ name: string; email: string } | null>(null);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [selectedBatch, setSelectedBatch] = useState<any>(null);
+  
+  // Dynamic Plans State from Backend
+  const [libraryPlans, setLibraryPlans] = useState<any[]>([]);
+  const [coursePlans, setCoursePlans] = useState<any[]>([]);
+  const [loadingPlans, setLoadingPlans] = useState(true);
 
   // FAQ toggles (holds open states)
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
@@ -206,6 +211,7 @@ export default function PricingPage() {
   };
 
   useEffect(() => {
+    // 1. Check student auth
     const token = localStorage.getItem("studentToken");
     const info = localStorage.getItem("studentInfo");
     if (token && info) {
@@ -215,6 +221,38 @@ export default function PricingPage() {
         setStudent(null);
       }
     }
+
+    // 2. Fetch plans
+    const fetchPlans = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/plans");
+        if (res.ok) {
+          const data = await res.json();
+          const lib = data.filter((p: any) => p.type === "library");
+          const crs = data.filter((p: any) => p.type === "course").map((p: any) => ({
+            ...p,
+            subtitle: p.time,
+            iconColor: p.bulletColor,
+            borderColor: p.color.includes("0a1c5d") ? "border-t-[#0a1c5d]" :
+                        p.color.includes("f48c06") ? "border-t-[#f48c06]" :
+                        p.color.includes("10b981") ? "border-t-[#10b981]" :
+                        p.color.includes("6366f1") ? "border-t-[#6366f1]" :
+                        "border-t-purple-500"
+          }));
+          setLibraryPlans(lib);
+          setCoursePlans(crs);
+        } else {
+          throw new Error("API error");
+        }
+      } catch (err) {
+        console.error("Failed to fetch plans from backend, using fallbacks:", err);
+        setLibraryPlans(LIBRARY_PLANS);
+        setCoursePlans(COURSE_CARDS);
+      } finally {
+        setLoadingPlans(false);
+      }
+    };
+    fetchPlans();
   }, []);
 
   const handleLogout = () => {
@@ -314,7 +352,7 @@ export default function PricingPage() {
 
           {/* Logo */}
           <div className="flex items-center cursor-pointer h-full" onClick={() => window.location.href = "/"}>
-            <img src="/images/jms.logo.png" alt="JMS Logo" className="h-[90px] w-auto object-contain" onError={(e) => {
+            <img src="/images/jms.logo.png" alt="JMS Logo" className="h-[55px] md:h-[65px] lg:h-[90px] w-auto object-contain" onError={(e) => {
               e.currentTarget.style.display = 'none';
               e.currentTarget.nextElementSibling?.classList.remove('hidden');
               e.currentTarget.nextElementSibling?.classList.add('flex');
@@ -536,8 +574,8 @@ export default function PricingPage() {
           </div>
 
           {/* Library Shifts Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 items-stretch w-full mb-16">
-            {LIBRARY_PLANS.map((batch, idx) => (
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-6 items-stretch w-full mb-16">
+            {libraryPlans.map((batch, idx) => (
               <div
                 key={idx}
                 className={`card-style-3 p-5 flex flex-col justify-between ${batch.color.includes('0a1c5d') ? 'border-t-[#0a1c5d]' :
@@ -671,8 +709,8 @@ export default function PricingPage() {
           </div>
 
           {/* Academic Courses cards grid (No payment integration) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch w-full">
-            {COURSE_CARDS.map((course, idx) => (
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 items-stretch w-full">
+            {coursePlans.map((course, idx) => (
               <div
                 key={idx}
                 className={`card-style-3 p-6 flex flex-col justify-between ${course.borderColor}`}

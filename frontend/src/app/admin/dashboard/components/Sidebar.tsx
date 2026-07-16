@@ -3,7 +3,7 @@
 import React from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { LayoutDashboard, Users, LogOut, Settings, ShieldCheck, CreditCard } from "lucide-react";
+import { LayoutDashboard, Users, LogOut, Settings, ShieldCheck, CreditCard, BookOpen } from "lucide-react";
 
 export default function Sidebar() {
   const router = useRouter();
@@ -19,6 +19,7 @@ export default function Sidebar() {
     { name: "Dashboard", tab: "dashboard", path: "/admin/dashboard", icon: <LayoutDashboard className="w-5 h-5" /> },
     { name: "All Enquiries", tab: "enquiries", path: "/admin/dashboard?tab=enquiries", icon: <Users className="w-5 h-5" /> },
     { name: "Payment Logs", tab: "payments", path: "/admin/dashboard?tab=payments", icon: <CreditCard className="w-5 h-5" /> },
+    { name: "Manage Plans", tab: "plans", path: "/admin/dashboard?tab=plans", icon: <BookOpen className="w-5 h-5" /> },
     { name: "Settings", tab: "settings", path: "/admin/dashboard?tab=settings", icon: <Settings className="w-5 h-5" /> },
   ];
 
