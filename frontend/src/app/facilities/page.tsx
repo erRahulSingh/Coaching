@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Menu,
   X,
@@ -32,6 +32,26 @@ export default function FacilitiesPage() {
   const { theme } = useTheme();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAdmissionOpen, setIsAdmissionOpen] = useState(false);
+  const [student, setStudent] = useState<{ name: string; email: string } | null>(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("studentToken");
+    const info = localStorage.getItem("studentInfo");
+    if (token && info) {
+      try {
+        setStudent(JSON.parse(info));
+      } catch (e) {
+        setStudent(null);
+      }
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("studentToken");
+    localStorage.removeItem("studentInfo");
+    setStudent(null);
+    window.location.reload();
+  };
 
   const handleNavClick = (id: string) => {
     setIsMobileMenuOpen(false);
@@ -101,22 +121,45 @@ export default function FacilitiesPage() {
           </div>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-8">
-            {["Home", "Facilities", "Courses", "Pricing"].map((item) => {
-              const id = item.toLowerCase().replace(" ", "-");
-              const isActive = item === "Facilities";
-              return (
-                <button
-                  key={item}
-                  onClick={() => handleNavClick(id)}
-                  className={`text-[15px] font-bold transition-colors duration-300 relative py-2 ${isActive ? 'text-[#f48c06]' : 'text-[#0a1c5d] hover:text-[#f48c06]'}`}
+          <div className="hidden lg:flex items-center gap-8">
+            <nav className="flex items-center gap-8">
+              {["Home", "Facilities", "Courses", "Pricing"].map((item) => {
+                const id = item.toLowerCase().replace(" ", "-");
+                const isActive = item === "Facilities";
+                return (
+                  <button
+                    key={item}
+                    onClick={() => handleNavClick(id)}
+                    className={`text-[15px] font-bold transition-colors duration-300 relative py-2 ${isActive ? 'text-[#f48c06]' : 'text-[#0a1c5d] hover:text-[#f48c06]'}`}
+                  >
+                    {item}
+                    {isActive && <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-[3px] bg-[#f48c06] rounded-full" />}
+                  </button>
+                );
+              })}
+            </nav>
+
+            <div className="flex items-center gap-4 border-l border-gray-250 pl-8">
+              {student ? (
+                <div className="flex items-center gap-3">
+                  <span className="text-[14px] font-black text-[#0a1c5d]">Hi, {student.name}</span>
+                  <button
+                    onClick={handleLogout}
+                    className="px-4 py-2 border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all font-bold text-[13px] rounded-full"
+                  >
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <a
+                  href="/auth/login"
+                  className="px-6 py-2.5 bg-gradient-to-r from-[#0a1c5d] to-[#1e3a8a] hover:from-[#1e3a8a] hover:to-[#2563eb] text-white font-black text-[13px] rounded-full shadow-lg shadow-[#0a1c5d]/10 transition-all hover:scale-105 active:scale-95"
                 >
-                  {item}
-                  {isActive && <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-[3px] bg-[#f48c06] rounded-full" />}
-                </button>
-              );
-            })}
-          </nav>
+                  Login
+                </a>
+              )}
+            </div>
+          </div>
 
           {/* Mobile Menu Actions */}
           <div className="flex items-center gap-3 lg:hidden">
@@ -147,6 +190,27 @@ export default function FacilitiesPage() {
                 </button>
               );
             })}
+
+            <div className="pt-2">
+              {student ? (
+                <div className="flex flex-col gap-2">
+                  <span className="text-sm font-black text-[#0a1c5d]">Hi, {student.name}</span>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full py-3 border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all font-bold text-sm rounded-xl text-center"
+                  >
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <a
+                  href="/auth/login"
+                  className="block w-full py-3.5 bg-gradient-to-r from-[#0a1c5d] to-[#1e3a8a] text-white font-black text-sm rounded-xl text-center shadow-lg"
+                >
+                  Login / Sign Up
+                </a>
+              )}
+            </div>
           </div>
         )}
       </header>

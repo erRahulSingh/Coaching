@@ -168,6 +168,26 @@ export default function LandingPage() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+  const [student, setStudent] = useState<{ name: string; email: string } | null>(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("studentToken");
+    const info = localStorage.getItem("studentInfo");
+    if (token && info) {
+      try {
+        setStudent(JSON.parse(info));
+      } catch (e) {
+        setStudent(null);
+      }
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("studentToken");
+    localStorage.removeItem("studentInfo");
+    setStudent(null);
+    window.location.reload();
+  };
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -252,20 +272,20 @@ export default function LandingPage() {
       <div className="fixed right-4 bottom-24 flex flex-col gap-3.5 z-50">
         <button
           onClick={() => window.open("tel:7352527752")}
-          className="p-3.5 bg-gold hover:bg-gold-dark text-navy-deep rounded-full shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95 group relative"
+          className="p-3.5 bg-gold hover:bg-gold-dark text-navy-deep rounded-full shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:scale-110 hover:shadow-[0_10px_25px_rgba(255,215,0,0.4)] active:scale-95 group relative"
           aria-label="Call Us"
         >
-          <Phone className="w-5 h-5" />
+          <Phone className="w-5 h-5 group-hover:animate-bounce" />
           <span className="absolute right-12 top-1/2 -translate-y-1/2 bg-navy-muted border border-gold/30 px-3 py-1 rounded text-xs text-gold font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
             Call Us
           </span>
         </button>
         <button
           onClick={openWhatsApp}
-          className="p-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95 group relative"
+          className="p-3.5 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:scale-110 hover:shadow-[0_10px_25px_rgba(34,197,94,0.4)] active:scale-95 group relative"
           aria-label="WhatsApp Us"
         >
-          <MessageSquare className="w-5 h-5" />
+          <MessageSquare className="w-5 h-5 group-hover:animate-bounce" />
           <span className="absolute right-12 top-1/2 -translate-y-1/2 bg-navy-muted border border-gold/30 px-3 py-1 rounded text-xs text-gold font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
             WhatsApp Chat
           </span>
@@ -289,22 +309,45 @@ export default function LandingPage() {
           </div>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-8">
-            {["Home", "Facilities", "Courses", "Pricing"].map((item) => {
-              const id = item.toLowerCase().replace(" ", "-");
-              const isActive = item === "Home";
-              return (
-                <button
-                  key={item}
-                  onClick={() => handleNavClick(id)}
-                  className={`text-[15px] font-bold transition-colors duration-300 relative py-2 ${isActive ? 'text-[#0a1c5d]' : 'text-[#0a1c5d] hover:text-[#f48c06]'}`}
+          <div className="hidden lg:flex items-center gap-8">
+            <nav className="flex items-center gap-8">
+              {["Home", "Facilities", "Courses", "Pricing"].map((item) => {
+                const id = item.toLowerCase().replace(" ", "-");
+                const isActive = item === "Home";
+                return (
+                  <button
+                    key={item}
+                    onClick={() => handleNavClick(id)}
+                    className={`text-[15px] font-bold transition-colors duration-300 relative py-2 ${isActive ? 'text-[#0a1c5d]' : 'text-[#0a1c5d] hover:text-[#f48c06]'}`}
+                  >
+                    {item}
+                    {isActive && <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-[3px] bg-[#f48c06] rounded-full" />}
+                  </button>
+                );
+              })}
+            </nav>
+
+            <div className="flex items-center gap-4 border-l border-gray-250 pl-8">
+              {student ? (
+                <div className="flex items-center gap-3">
+                  <span className="text-[14px] font-black text-[#0a1c5d]">Hi, {student.name}</span>
+                  <button
+                    onClick={handleLogout}
+                    className="px-4 py-2 border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all font-bold text-[13px] rounded-full"
+                  >
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <a
+                  href="/auth/login"
+                  className="px-6 py-2.5 bg-gradient-to-r from-[#0a1c5d] to-[#1e3a8a] hover:from-[#1e3a8a] hover:to-[#2563eb] text-white font-black text-[13px] rounded-full shadow-lg shadow-[#0a1c5d]/10 transition-all hover:scale-105 active:scale-95"
                 >
-                  {item}
-                  {isActive && <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-[3px] bg-[#f48c06] rounded-full" />}
-                </button>
-              );
-            })}
-          </nav>
+                  Login
+                </a>
+              )}
+            </div>
+          </div>
 
           {/* Mobile Menu Actions */}
           <div className="flex items-center gap-3 lg:hidden">
@@ -335,6 +378,27 @@ export default function LandingPage() {
                 </button>
               );
             })}
+
+            <div className="pt-2">
+              {student ? (
+                <div className="flex flex-col gap-2">
+                  <span className="text-sm font-black text-[#0a1c5d]">Hi, {student.name}</span>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full py-3 border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all font-bold text-sm rounded-xl text-center"
+                  >
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <a
+                  href="/auth/login"
+                  className="block w-full py-3.5 bg-gradient-to-r from-[#0a1c5d] to-[#1e3a8a] text-white font-black text-sm rounded-xl text-center shadow-lg"
+                >
+                  Login / Sign Up
+                </a>
+              )}
+            </div>
           </div>
         )}
       </header>
@@ -345,10 +409,10 @@ export default function LandingPage() {
         <div className="max-w-[1250px] w-full mx-auto relative lg:min-h-[550px] flex items-center px-4 md:px-8">
 
           {/* Right Background SVG & Image (Desktop only) */}
-          <div className="absolute top-0 right-4 md:right-8 w-[55%] h-full z-0 hidden lg:block rounded-r-[40px] overflow-hidden">
+          <div className="absolute top-0 right-0 lg:-right-8 w-[45%] h-full z-0 hidden lg:block rounded-r-[40px] overflow-hidden">
             <svg viewBox="0 0 1000 1000" className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
               {/* Image */}
-              <image href="https://images.unsplash.com/photo-1544717302-de2939b7ef71?q=80&w=1200" width="1000" height="1000" preserveAspectRatio="xMidYMid slice" />
+              <image href="/images/hero.png" width="1000" height="1000" preserveAspectRatio="xMidYMid slice" />
 
               {/* White Overlay to create curved mask */}
               <path d="M 0,0 L 450,0 C 150,350 150,750 650,1000 L 0,1000 Z" fill="#ffffff" />
@@ -366,7 +430,7 @@ export default function LandingPage() {
           {/* Content Container */}
           <div className="w-full relative z-10 flex flex-row items-center justify-between gap-2">
 
-            {/* Left Content Column */}
+            {/* Content Column */}
             <div className="w-[60%] lg:w-[60%] flex flex-col items-start text-left pt-2 lg:pt-0">
 
               {/* Padhaai Aapki, Mahol Hamara badge */}
@@ -398,14 +462,14 @@ export default function LandingPage() {
 
 
               {/* Description */}
-              <p className="text-[9px] sm:text-[11px] md:text-[12px] text-gray-500 font-medium leading-relaxed max-w-[500px] mb-4 sm:mb-6 hidden sm:block">
+              <p className="text-[10px] sm:text-[11px] md:text-[12px] text-gray-500 font-medium leading-relaxed max-w-[500px] mt-2 mb-6 sm:mb-6">
                 The perfect place to study, grow and achieve.<br />
                 Best environment, expert guidance and 24x7 access<br />
                 to help you achieve your goals.
               </p>
 
               {/* 4 Feature Badges Row */}
-              <div className="flex flex-nowrap sm:flex-wrap justify-between sm:justify-start gap-1 sm:gap-2 w-full max-w-[550px] mb-4 sm:mb-6">
+              <div className="flex flex-nowrap sm:flex-wrap justify-between sm:justify-start gap-1 sm:gap-2 w-full max-w-[550px] mb-6 sm:mb-8 mt-1">
                 {[
                   { title: "OPEN 24/7", subtitle: "Learn Anytime", iconPath: <Clock className="w-3 h-3 sm:w-5 sm:h-5 text-[#0a1c5d] stroke-[2]" /> },
                   { title: "Best Environment", subtitle: "for Study", iconPath: <svg className="w-3 h-3 sm:w-5 sm:h-5 text-[#0a1c5d]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> },
@@ -425,7 +489,7 @@ export default function LandingPage() {
               </div>
 
               {/* CTA Buttons */}
-              <div className="flex flex-row gap-1 sm:gap-4 w-full">
+              <div className="flex flex-row gap-1 sm:gap-4 w-full mt-2">
                 <button
                   onClick={() => setIsAdmissionOpen(true)}
                   className="flex-1 sm:flex-none px-1 sm:px-6 py-2 sm:py-2.5 bg-[#0a1c5d] hover:bg-[#071444] text-white font-bold rounded-[6px] sm:rounded-[8px] transition-all duration-300 text-[9px] sm:text-[13px] tracking-wide flex items-center justify-center gap-1 shadow-lg whitespace-nowrap"
@@ -445,7 +509,7 @@ export default function LandingPage() {
             {/* Mobile Image (Visible only on small screens) */}
             <div className="w-[38%] lg:hidden relative shrink-0">
               <div className="relative w-full aspect-[3/4] sm:aspect-square rounded-[16px] overflow-hidden shadow-xl">
-                <img src="https://images.unsplash.com/photo-1544717302-de2939b7ef71?q=80&w=800" className="w-full h-full object-cover" />
+                <img src="/images/hero.png" className="w-full h-full object-cover" />
               </div>
             </div>
 
@@ -471,7 +535,7 @@ export default function LandingPage() {
               <h3 className="text-3xl md:text-4xl font-sans font-black tracking-tight leading-none mb-6">
                 <span className="text-[#0a1c5d]">JMS</span> <span className="text-[#f48c06]">MODERN CLASSES</span>
               </h3>
-              <p className="text-gray-600 text-[15px] md:text-[16px] leading-relaxed mb-10 font-medium">
+              <p className="text-gray-500 text-[11px] md:text-[14px] leading-relaxed mb-10 font-medium">
                 JMS Modern Classes is a premium study destination for students who dream big and work hard. We provide the perfect blend of peaceful environment, expert guidance, and 24x7 access to help you achieve your goals.
               </p>
 
@@ -545,10 +609,7 @@ export default function LandingPage() {
                 label: "Comfortable\nStudy Desk",
                 icon: <svg className="w-8 h-8 text-[#0a1c5d]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 18v3M20 18v3M4 10h16M8 10v8M16 10v8" /><path d="M7 5h10v5H7Z" /></svg>
               },
-              {
-                label: "Peaceful Study\nEnvironment",
-                icon: <svg className="w-8 h-8 text-[#0a1c5d]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 22c5-5 5-11 5-11s-6 0-6 11c0-11-6-11-6-11s0 6 5 11" /><circle cx="12" cy="18" r="1.5" /></svg>
-              }
+
             ].map((fac, idx) => (
               <div
                 key={idx}
@@ -674,7 +735,7 @@ export default function LandingPage() {
           </h3>
 
           <div className="flex flex-wrap justify-center gap-4 w-full">
-            {["Class 9th", "Class 10th", "Class 11th", "Class 12th", "BSEB", "CBSE", "Competitive\nExams", "Foundation\nCourses"].map((course, idx) => (
+            {["Class 9th", "Class 10th", "Class 11th", "Class 12th", "BSEB", "CBSE", "Competitive\nExams"].map((course, idx) => (
               <div key={idx} className="card-style-3 px-8 py-4 text-center flex items-center justify-center whitespace-pre-line text-[#0a1c5d] font-black text-[14px] flex-1 min-w-[140px] max-w-[200px] border-t-blue-500">
                 {course}
               </div>
@@ -785,8 +846,8 @@ export default function LandingPage() {
               "https://images.unsplash.com/photo-1568667256549-094345857637?q=80&w=400",
               "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=400",
               "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400",
-              "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=400",
-              "https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?q=80&w=400"
+              "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=400"
+              // "https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?q=80&w=400"
             ].map((imgUrl, i) => (
               <div key={i} className="w-full h-[80px] sm:h-[120px] md:h-[160px] md:flex-1 md:min-w-[200px] md:max-w-[350px] rounded-[6px] md:rounded-[12px] overflow-hidden border border-gray-150 shadow-sm relative group cursor-pointer">
                 <img src={imgUrl} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt={"Library " + i} />
