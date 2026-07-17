@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { X, CheckCircle, ArrowRight, ShieldCheck, CreditCard } from "lucide-react";
+import { API_BASE_URL } from "@/config";
 
 interface PaymentModalProps {
   isOpen: boolean;
@@ -47,7 +48,7 @@ export default function PaymentModal({ isOpen, onClose, batch }: PaymentModalPro
       }
 
       // 1. Create order on Express backend
-      const res = await fetch("http://localhost:5000/api/payment/order", {
+      const res = await fetch(`${API_BASE_URL}/api/payment/order`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -83,7 +84,7 @@ export default function PaymentModal({ isOpen, onClose, batch }: PaymentModalPro
           setIsProcessing(true);
           try {
             // 4. Verify payment signature on the backend
-            const verifyRes = await fetch("http://localhost:5000/api/payment/verify", {
+            const verifyRes = await fetch(`${API_BASE_URL}/api/payment/verify`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",

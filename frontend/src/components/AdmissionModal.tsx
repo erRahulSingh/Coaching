@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { X, CheckCircle, ArrowRight, Phone, MessageSquare } from "lucide-react";
+import { API_BASE_URL } from "@/config";
 
 interface AdmissionModalProps {
   isOpen: boolean;
@@ -29,7 +30,7 @@ export default function AdmissionModal({ isOpen, onClose }: AdmissionModalProps)
 
     try {
       // Try calling local Express backend
-      const response = await fetch("http://localhost:5000/api/admissions", {
+      const response = await fetch(`${API_BASE_URL}/api/admissions`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

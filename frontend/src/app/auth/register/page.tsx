@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { API_BASE_URL } from "@/config";
 import {
   Mail,
   Lock,
@@ -48,7 +49,7 @@ export default function StudentRegister() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/student/register", {
+      const res = await fetch(`${API_BASE_URL}/api/student/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

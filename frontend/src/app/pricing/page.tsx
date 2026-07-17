@@ -27,6 +27,7 @@ import {
 import { useTheme } from "@/components/AppWrapper";
 import AdmissionModal from "@/components/AdmissionModal";
 import PaymentModal from "@/components/PaymentModal";
+import { API_BASE_URL } from "@/config";
 
 // --- Pricing Types & Data ---
 type LibraryPlan = {
@@ -225,7 +226,7 @@ export default function PricingPage() {
     // 2. Fetch plans
     const fetchPlans = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/plans");
+        const res = await fetch(`${API_BASE_URL}/api/plans`);
         if (res.ok) {
           const data = await res.json();
           const lib = data.filter((p: any) => p.type === "library");

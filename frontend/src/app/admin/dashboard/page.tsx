@@ -3,6 +3,7 @@
 import React, { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Sidebar from "./components/Sidebar";
+import { API_BASE_URL } from "@/config";
 import { 
   Users, 
   FileText, 
@@ -94,7 +95,7 @@ function DashboardContent() {
       };
 
       // Fetch Stats
-      const statsRes = await fetch("http://localhost:5000/api/admin/dashboard-stats", { headers });
+      const statsRes = await fetch(`${API_BASE_URL}/api/admin/dashboard-stats`, { headers });
       if (statsRes.ok) {
         const statsData = await statsRes.json();
         setStats(statsData);
@@ -105,21 +106,21 @@ function DashboardContent() {
       }
 
       // Fetch Admissions
-      const admissionsRes = await fetch("http://localhost:5000/api/admin/admissions", { headers });
+      const admissionsRes = await fetch(`${API_BASE_URL}/api/admin/admissions`, { headers });
       if (admissionsRes.ok) {
         const admissionsData = await admissionsRes.json();
         setAdmissions(admissionsData);
       }
 
       // Fetch Payments
-      const paymentsRes = await fetch("http://localhost:5000/api/admin/payments", { headers });
+      const paymentsRes = await fetch(`${API_BASE_URL}/api/admin/payments`, { headers });
       if (paymentsRes.ok) {
         const paymentsData = await paymentsRes.json();
         setPayments(paymentsData);
       }
 
       // Fetch Plans
-      const plansRes = await fetch("http://localhost:5000/api/plans");
+      const plansRes = await fetch(`${API_BASE_URL}/api/plans`);
       if (plansRes.ok) {
         const plansData = await plansRes.json();
         setPlans(plansData);
@@ -188,8 +189,8 @@ function DashboardContent() {
       };
 
       const url = editingPlan 
-        ? `http://localhost:5000/api/admin/plans/${editingPlan._id}`
-        : "http://localhost:5000/api/admin/plans";
+        ? `${API_BASE_URL}/api/admin/plans/${editingPlan._id}`
+        : `${API_BASE_URL}/api/admin/plans`;
         
       const method = editingPlan ? "PUT" : "POST";
 
@@ -224,7 +225,7 @@ function DashboardContent() {
     
     try {
       const token = localStorage.getItem("adminToken");
-      const res = await fetch(`http://localhost:5000/api/admin/plans/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/admin/plans/${id}`, {
         method: "DELETE",
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -247,7 +248,7 @@ function DashboardContent() {
     setUpdatingId(id);
     try {
       const token = localStorage.getItem("adminToken");
-      const res = await fetch(`http://localhost:5000/api/admin/admissions/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/admin/admissions/${id}`, {
         method: "PUT",
         headers: {
           "Authorization": `Bearer ${token}`,
