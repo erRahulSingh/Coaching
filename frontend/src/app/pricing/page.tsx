@@ -199,8 +199,8 @@ export default function PricingPage() {
   const [selectedBatch, setSelectedBatch] = useState<any>(null);
   
   // Dynamic Plans State from Backend
-  const [libraryPlans, setLibraryPlans] = useState<any[]>([]);
-  const [coursePlans, setCoursePlans] = useState<any[]>([]);
+  const [libraryPlans, setLibraryPlans] = useState<LibraryPlan[]>([]);
+  const [coursePlans, setCoursePlans] = useState<CourseCard[]>([]);
   const [loadingPlans, setLoadingPlans] = useState(true);
 
   // FAQ toggles (holds open states)
@@ -598,7 +598,7 @@ export default function PricingPage() {
                 {/* Features List */}
                 <div className="py-6 flex-1 flex flex-col justify-start">
                   <div className="flex flex-col gap-2.5 text-left">
-                    {batch.features.map((feature, fIdx) => (
+                    {batch.features.map((feature: string, fIdx: number) => (
                       <div key={fIdx} className="flex items-start gap-2">
                         <CheckCircle className={`w-3.5 h-3.5 shrink-0 mt-0.5 ${batch.bulletColor}`} />
                         <span className="text-[12px] text-slate-700 font-semibold leading-tight">{feature}</span>
@@ -731,7 +731,7 @@ export default function PricingPage() {
                 {/* Course features */}
                 <div className="py-6 flex-1 flex flex-col justify-start">
                   <div className="flex flex-col gap-3 text-left">
-                    {course.features.map((feature, fIdx) => (
+                    {course.features.map((feature: string, fIdx: number) => (
                       <div key={fIdx} className="flex items-start gap-2.5">
                         <CheckCircle className={`w-3.5 h-3.5 shrink-0 mt-0.5 ${course.iconColor}`} />
                         <span className="text-[12px] text-slate-700 font-semibold leading-snug">
